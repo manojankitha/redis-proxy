@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"runtime/debug"
 
 	"github.com/freeconf/yang/fc"
@@ -22,14 +21,13 @@ func main() {
 
 	fmt.Println("Starting Redis proxy server on port 8080...")
 	config := config.LoadConfig()
-	log.Println(config)
 
 	proxyService, err := proxy.NewRedisProxy(config)
 	if err != nil {
 		panic("Failed to create Redis Proxy Service")
 	}
+	fc.Info.Printf("Starting Redis Proxy Server on port %d ...", config.ProxyPort)
 	server := proxy.NewRedisProxyService(proxyService, config.ProxyPort)
 	server.ListenAndServe()
-	fc.Info.Printf("Starting Redis Proxy Server on port %d ...", config.ProxyPort)
 
 }
