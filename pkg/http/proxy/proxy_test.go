@@ -65,7 +65,7 @@ func getResponse(path string, s *http.Server, t *testing.T) *http.Response {
 	return res
 }
 
-// Test to confirm redis proxy service running on a specific port
+// Test to confirm redis proxy service running on a specific port and is working as per requirements
 func TestRedisProxyService(t *testing.T) {
 
 	defer func() {
@@ -107,7 +107,7 @@ func TestRedisProxyService(t *testing.T) {
 
 	response = getResponse("/GET", server, t)
 	assert.Equal(t, http.StatusNotFound, response.StatusCode)
-	response = getResponse("/GET/{key", server, t)
+	response = getResponse("/GET/key", server, t)
 	assert.Equal(t, http.StatusOK, response.StatusCode)
 
 	// Request value from proxy
