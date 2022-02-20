@@ -13,6 +13,8 @@ import (
 type RedisProxy struct {
 	redisStorage *redis.RedisClient
 	proxyStorage *cache.LocalCacheClient
+	sema         chan struct{} // reference: https://www.pauladamsmith.com/blog/2016/04/max-clients-go-net-http.html
+	maxClients   int
 }
 
 func NewRedisProxy(pConfig *config.Config) (*RedisProxy, error) {
@@ -28,6 +30,8 @@ func NewRedisProxy(pConfig *config.Config) (*RedisProxy, error) {
 	service := &RedisProxy{
 		redisStorage: redisServ,
 		proxyStorage: proxyServ,
+		sema:         make(chan struct{}, pConfig.MaxClients),
+		maxClients:   pConfig.MaxClients,
 	}
 	return service, nil
 }

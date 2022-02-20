@@ -74,7 +74,7 @@ func (c *LocalCacheClient) SetKey(key string, value string) error {
 	return nil
 }
 
-func (c *LocalCacheClient) purgeCache() {
+func (c *LocalCacheClient) PurgeCache() {
 	c.Cache.Purge()
 	fc.Info.Println("Purged proxy cache.")
 }

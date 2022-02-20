@@ -22,7 +22,7 @@ func TestCacheInitialize(t *testing.T) {
 	fc.Info.Println(t.Name())
 	assert.Equal(t, c.cacheExpiryTime, int64(CACHE_EXPIRY_TIME))
 
-	c.purgeCache()
+	c.PurgeCache()
 
 }
 
@@ -48,7 +48,7 @@ func TestHasExpired(t *testing.T) {
 	assert.Equal(t, false, ok)
 	assert.Equal(t, "", value)
 
-	c.purgeCache()
+	c.PurgeCache()
 
 }
 
@@ -66,7 +66,7 @@ func TestAddElementToCache(t *testing.T) {
 	// checks if new value got stored for same key
 	assert.Equal(t, "testValueChanged", value)
 
-	c.purgeCache()
+	c.PurgeCache()
 }
 
 // Test to check getKey function handles keys that are not set in the first place graciously and return ""
@@ -80,7 +80,7 @@ func TestGetKeyCornerCase(t *testing.T) {
 	assert.Equal(t, false, ok)
 	assert.Equal(t, "", value)
 
-	c.purgeCache()
+	c.PurgeCache()
 
 }
 
@@ -110,5 +110,5 @@ func TestCacheEviction(t *testing.T) {
 	value, ok := c.GetKey("DummyKey")
 	assert.Equal(t, false, ok)
 	assert.Equal(t, "", value)
-	c.purgeCache()
+	c.PurgeCache()
 }

@@ -16,6 +16,7 @@ type Config struct {
 	GlobalCacheExpiryTime int    `arg:"env:CACHE_EXPIRY_TIME"`
 	CacheCapacity         int    `arg:"env:CACHE_CAPACITY"`
 	ProxyPort             int    `arg:"env:PROXY_PORT"`
+	MaxClients            int    `arg:"env:MAX_CLIENTS"`
 }
 
 func LookUpEnv(key string) (string, bool) {
@@ -69,6 +70,7 @@ func LoadConfig() *Config {
 	flag.IntVar(&config.GlobalCacheExpiryTime, "global-cache-expiry-time", LookupEnvOrInt("GLOBAL_CACHE_EXPIRY_TIME", 60*1000), "Cache expiry time(Please mention in milliseconds)") // todo for future: Handle time input as duration because user should not concern themselves with conversion
 	flag.IntVar(&config.CacheCapacity, "cache-capacity", LookupEnvOrInt("CACHE_CAPACITY", 100), "Cache capacity")
 	flag.IntVar(&config.ProxyPort, "proxy-port", LookupEnvOrInt("PROXY_PORT", 9000), "Port the proxy server listens on")
+	flag.IntVar(&config.MaxClients, "max-clients", LookupEnvOrInt("MAX_CLIENTS", 1), "Concurrent client limit")
 	flag.Parse()
 	log.Printf("app.config %v\n", getConfig(flag.CommandLine))
 	return config
