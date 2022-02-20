@@ -19,7 +19,7 @@ func main() {
 		}
 	}()
 
-	fmt.Println("Starting Redis proxy server on port 8080...")
+	fmt.Println("Starting Redis proxy server on port 9000...")
 	config := config.LoadConfig()
 
 	proxyService, err := proxy.NewRedisProxy(config)
@@ -29,5 +29,15 @@ func main() {
 	fc.Info.Printf("Starting Redis Proxy Server on port %d ...", config.ProxyPort)
 	server := proxy.NewRedisProxyService(proxyService, config.ProxyPort)
 	server.ListenAndServe()
+
+	// redis test
+	//client := redis.NewClient(&redis.Options{
+	//	Addr: "localhost:6379",
+	//})
+	//err := client.Set("key1", "value1", 10*time.Minute).Err()
+	//if err != nil {
+	//	panic(err)
+	//}
+	//time.Sleep(10 * time.Minute)
 
 }

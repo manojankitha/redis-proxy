@@ -15,5 +15,6 @@ require (
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/joho/godotenv v1.4.0
 	github.com/pmezard/go-difflib v1.0.0 // indirect
+	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd
 	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
 )
