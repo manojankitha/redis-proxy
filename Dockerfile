@@ -9,7 +9,7 @@ WORKDIR $APP_HOME
 
 RUN make install-deps build
 
-RUN cp -f $APP_HOME/cmd/redis-proxy/redis-proxy /usr/bin
+RUN cp -f $APP_HOME/redis-proxy /usr/bin
 
 FROM scratch
 

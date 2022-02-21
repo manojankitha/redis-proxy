@@ -72,7 +72,7 @@ func LoadConfig() *Config {
 	flag.IntVar(&config.ProxyPort, "proxy-port", LookupEnvOrInt("PROXY_PORT", 9000), "Port the proxy server listens on")
 	flag.IntVar(&config.MaxClients, "max-clients", LookupEnvOrInt("MAX_CLIENTS", 1), "Concurrent client limit")
 	flag.Parse()
-	log.Printf("app.config %v\n", getConfig(flag.CommandLine))
+	//log.Printf("app.config %v\n", getConfig(flag.CommandLine))
 	return config
 
 }

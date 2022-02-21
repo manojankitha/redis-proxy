@@ -1,13 +1,11 @@
 
-
 .PHONY: build
 
 install-deps:
 	go get -v ./...
 
 build: install-deps
-	cd cmd/redis-proxy && \
-	  go build
+	  go build -o redis-proxy cmd/redis-proxy/main.go
 
 test:
 	go test -v ./...
