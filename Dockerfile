@@ -1,29 +1,18 @@
-FROM golang:latest
+# Copied from: https://github.com/xtuc/redis-proxy/blob/master/Dockerfile
+FROM golang:1.17 as builder
 
-# Set the Current Working Directory inside the container
-WORKDIR /go/src/github.com/manojankitha/redis-proxy
+ENV APP_HOME $GOPATH/src/github.com/manojankitha/redis-proxy
 
-# We want to populate the module cache based on the go.{mod,sum} files.
-COPY go.mod .
-COPY go.sum .
+COPY ./ $APP_HOME
 
-RUN go mod download
+WORKDIR $APP_HOME
 
-COPY . .
+RUN make install-deps build
 
-# Unit test
-#RUN go test ./...
+RUN cp -f $APP_HOME/cmd/redis-proxy/redis-proxy /usr/bin
 
-# oddly required explicit go build flags for go docker
-ENV CGO_ENABLED=0
-ENV GOOS=linux
-ENV GOARCH=amd64
+FROM scratch
 
-# Build the Go app
-RUN go build -v -o proxy cmd/main.go
+COPY --from=builder /usr/bin/redis-proxy /usr/bin/redis-proxy
 
-# This container exposes port 9000 to the outside world
-EXPOSE 9000
-
-# Run the binary program produced by `go install`
-CMD ["./proxy"]
+CMD ["/usr/bin/redis-proxy"]

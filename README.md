@@ -29,11 +29,14 @@ redis-proxy
 ├── Makefile
 ├── README.md
 ├── cmd
-│   ├── coverage.out
-│   └── main.go
+│   └── redis-proxy
+│       ├── coverage.out
+│       └── main.go
 ├── docker-compose.yml
 ├── go.mod
 ├── go.sum
+├── images
+│   └── systemOverview.jpg
 └── pkg
     ├── cache
     │   ├── cache.go
@@ -60,7 +63,7 @@ The project contains of two main folders `cmd` and `pkg`. Overview of the packag
 The `Config` struct stores the configurable parameters of a redis proxy service. These are the configurable parameters that can be set in an environment file.
 
 ```
-REDIS_ADDRESS=#redis address host:port ex: "localhost:6379"
+REDIS_ADDRESS=#redis address host:port ex: "redis:6379"
 GLOBAL_CACHE_EXPIRY_TIME=#local cache expiry time in milliseconds
 CACHE_CAPACITY=#cache capacity in int
 PROXY_PORT=#port proxy is running on
@@ -107,6 +110,15 @@ This is the entrypoint for the project. Based on the configuration passed by the
 
  Prerequisites:
  `make`, `docker`, `docker-compose`
+
+ Run the proxy:
+ `.cmd/redis-proxy/redis-proxy`
+
+ Unit test:
+ `make test`
+
+ Single Click build and test:
+ `docker-compose up`
 
 ## Test coverage
 
