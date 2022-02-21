@@ -9,3 +9,9 @@ build: install-deps
 
 test:
 	go test -v ./...
+
+run: ## Run container. See README for options
+	docker-compose up -d
+
+stop: ## Stop docker container
+	docker-compose down -v

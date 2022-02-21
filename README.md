@@ -111,14 +111,29 @@ This is the entrypoint for the project. Based on the configuration passed by the
  Prerequisites:
  `make`, `docker`, `docker-compose`
 
- Run the proxy:
- `.cmd/redis-proxy/redis-proxy`
+ Run from Source:
 
- Unit test:
- `make test`
+ ```
+ # clone repo
+ git clone git@github.com:manojankitha/redis-proxy.git
 
- Single Click build and test:
- `docker-compose up`
+ cd redis-proxy
+
+ # Run the proxy:
+ ./redis-proxy
+
+ # Unit test:
+ make test
+
+ # Single Click build and test:
+ make build test
+```
+
+ Run from container:
+
+ ```
+ docker-compose up -d --build
+ ```
 
 ## Test coverage
 
