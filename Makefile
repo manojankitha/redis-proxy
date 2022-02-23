@@ -7,7 +7,8 @@ install-deps:
 build: install-deps
 	  go build -o redis-proxy cmd/redis-proxy/main.go
 
-test:
+test: ## assuming its run of mac OS with brew installed.
+	brew install golang
 	go test -v ./...
 
 run: ## Run container. See README for options
