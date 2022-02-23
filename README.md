@@ -109,9 +109,44 @@ This is the entrypoint for the project. Based on the configuration passed by the
 ## Instructions for how to run the proxy and tests
 
  Prerequisites:
- `make`, `docker`, `docker-compose`
+ `make`, `docker`, `docker-compose`,`go`
 
- Run from Source:
+### Step 1. Installing Go (if not already present)
+
+#### Linux
+
+```
+wget https://golang.org/dl/go1.17.7.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf ./go1.17.7.linux-amd64.tar.gz
+```
+
+#### OSX
+
+```
+brew install golang
+cd ~
+# By default Go is installed in home. Move it to `usr/local` using the below commands
+sudo mv go /usr/local
+```
+
+ Check if go is installed
+
+ ```
+ go version
+
+ # output-expected
+ go version go1.17.7 darwin/amd64
+ ```
+
+### Step 2. Set environment vars
+
+Best to put this in your `~/.bashrc` so they are loaded on login
+
+```
+export PATH=$PATH:/usr/local/go/bin
+```
+
+### Step 3. Run from Source
 
  ```
  # clone repo
@@ -129,13 +164,13 @@ This is the entrypoint for the project. Based on the configuration passed by the
  make build test
 ```
 
- Run from container:
+### Step 4. Run from container
 
  ```
  docker-compose up -d --build
  ```
 
-## Test coverage
+### Test coverage
 
 Run the following command to calculate the coverage for your current unit test:
 
