@@ -30,14 +30,4 @@ func main() {
 	server := proxy.NewRedisProxyService(proxyService, config.ProxyPort)
 	server.ListenAndServe()
 
-	// redis test
-	//client := redis.NewClient(&redis.Options{
-	//	Addr: "localhost:6379",
-	//})
-	//err := client.Set("key1", "value1", 10*time.Minute).Err()
-	//if err != nil {
-	//	panic(err)
-	//}
-	//time.Sleep(10 * time.Minute)
-
 }

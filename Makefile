@@ -7,9 +7,9 @@ install-deps:
 build: install-deps
 	  go build -o redis-proxy cmd/redis-proxy/main.go
 
-test: ## assuming its run of mac OS with brew installed.
-	brew install golang
-	go test -v ./...
+test:
+	docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
+	docker-compose -f docker-compose.test.yml down --volumes
 
 run: ## Run container. See README for options
 	docker-compose up -d

@@ -66,7 +66,7 @@ func goDotEnvVariable(key string) string {
 }
 func LoadConfig() *Config {
 	config := &Config{}
-	flag.StringVar(&config.RedisAddr, "redis-addr", LookupEnvOrString("REDIS_ADDRESS", "localhost:6379"), "Address of backing Redis server")                                         // using default redis address port
+	flag.StringVar(&config.RedisAddr, "redis-addr", LookupEnvOrString("REDIS_ADDRESS", "redis:6379"), "Address of backing Redis server")                                             // using default redis address port
 	flag.IntVar(&config.GlobalCacheExpiryTime, "global-cache-expiry-time", LookupEnvOrInt("GLOBAL_CACHE_EXPIRY_TIME", 60*1000), "Cache expiry time(Please mention in milliseconds)") // todo for future: Handle time input as duration because user should not concern themselves with conversion
 	flag.IntVar(&config.CacheCapacity, "cache-capacity", LookupEnvOrInt("CACHE_CAPACITY", 100), "Cache capacity")
 	flag.IntVar(&config.ProxyPort, "proxy-port", LookupEnvOrInt("PROXY_PORT", 9000), "Port the proxy server listens on")

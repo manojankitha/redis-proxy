@@ -12,7 +12,7 @@ import (
 
 // Test to confirm redis client is able to set key value
 func TestRedisClientSetKey(t *testing.T) {
-	redisClient, err := RedisInit("localhost:6379")
+	redisClient, err := RedisInit("redis:6379")
 	if err != nil {
 		log.Fatalf("Error initializing redis service: %v", err.Error())
 	}
@@ -29,7 +29,7 @@ func TestRedisClientSetKey(t *testing.T) {
 // Test to confirm redis client is able to get value of key
 func TestRedisClientGetKey(t *testing.T) {
 
-	redisClient, err := RedisInit("localhost:6379")
+	redisClient, err := RedisInit("redis:6379")
 	if err != nil {
 		log.Fatalf("Error initializing redis service: %v", err.Error())
 	}

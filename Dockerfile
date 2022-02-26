@@ -7,6 +7,9 @@ COPY ./ $APP_HOME
 
 WORKDIR $APP_HOME
 
+
+RUN CGO_ENABLED=0
+
 RUN make install-deps build
 
 RUN cp -f $APP_HOME/redis-proxy /usr/bin

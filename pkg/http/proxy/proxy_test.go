@@ -16,7 +16,7 @@ import (
 // define test config
 const TEST_CACHE_CAPACITY = 5
 const TEST_GLOBAL_CACHE_EXPIRY_TIME = 120000 // in ms
-const TEST_REDIS_ADDRESS = "localhost:6379"
+const TEST_REDIS_ADDRESS = "redis:6379"
 const TEST_PROXY_PORT = 9000
 const MAX_CLIENTS = 2
 
