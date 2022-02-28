@@ -9,7 +9,7 @@ services:
   redis_proxy_tests:
     build:
       context: .
-      dockerfile: ./deploy/Dockerfile.test
+      dockerfile: ./cmd/redis-proxy/deploy/Dockerfile.test
     links:
       - redis
     ports:
